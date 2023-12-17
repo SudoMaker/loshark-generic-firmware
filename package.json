@@ -1,0 +1,46 @@
+{
+	"name": "loshark-generic-firmware",
+	"version": "1.0.0",
+	"description": "Generic factory firmware for LoShark",
+	"main": "dist/loshark-sx1268.js",
+	"type": "module",
+	"scripts": {
+    "start": "rollup -c ./config/rollup.config.mjs -w",
+    "start-433": "cross-env CHIP_TYPE=sx1268 rollup -c ./config/rollup.config.mjs -w",
+    "start-915": "cross-env CHIP_TYPE=sx1262 rollup -c ./config/rollup.config.mjs -w",
+    "build": "cross-env NODE_ENV=production rollup -c ./config/rollup.config.mjs",
+    "build-433": "cross-env NODE_ENV=production CHIP_TYPE=sx1268 rollup -c ./config/rollup.config.mjs",
+    "build-915": "cross-env NODE_ENV=production CHIP_TYPE=sx1262 rollup -c ./config/rollup.config.mjs",
+    "build-all": "pnpm build-433 && pnpm build-915",
+		"lint": "eslint --ext .js --ext .jsx src",
+		"clean": "del ./dist/** ./dev/**"
+	},
+	"author": "Yukino Song <yukino@yuki.network>",
+	"private": true,
+	"devDependencies": {
+		"@babel/eslint-parser": "^7.23.10",
+		"@rollup/plugin-alias": "^5.1.0",
+		"@rollup/plugin-commonjs": "^25.0.7",
+		"@rollup/plugin-eslint": "^9.0.5",
+		"@rollup/plugin-json": "^6.1.0",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"chalk": "^5.3.0",
+		"chokidar": "^3.6.0",
+		"cross-env": "^7.0.3",
+		"cssnano": "^6.0.3",
+		"del": "^7.1.0",
+		"del-cli": "^5.1.0",
+		"esbuild": "^0.20.0",
+		"eslint": "^8.56.0",
+		"globals": "^13.24.0",
+		"rollup": "^4.9.6",
+		"rollup-plugin-copy-glob": "^0.3.2",
+		"rollup-plugin-esbuild": "^6.1.1",
+		"rollup-plugin-progress": "^1.1.2",
+		"rollup-plugin-shell": "^1.0.9"
+	},
+	"dependencies": {
+		"msgpackr": "^1.10.1",
+		"ucobs": "^1.0.0"
+	}
+}
